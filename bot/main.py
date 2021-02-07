@@ -52,7 +52,7 @@ async def on_message(message):
     ### Portfolio ##
     if message.content.startswith('$Portfolio add'): # Portfolio -name -add/remove tkr
         mes = msg.split()
-        name = mes[1]
+        name = mes[2]
         tkr = mes[3].upper()
 
         quote = iex.quote(symbol=tkr)
