@@ -1,12 +1,5 @@
-<<<<<<< HEAD
-discord.py
+discord
 pandas
 pyEX
 psycopg2
-=======
-discord.py
-pandas
-pyEX
-psycopg2
->>>>>>> d51912e (test)
 sqlalchemy
