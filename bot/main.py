@@ -52,7 +52,7 @@ async def on_message(message):
     ### Portfolio ##
     if message.content.startswith('$Portfolio add'): # Portfolio -name -add/remove tkr
         mes = msg.split()
-        name = mes[2]
+        name = mes[2].upper()
         tkr = mes[3].upper()
 
         quote = iex.quote(symbol=tkr)
@@ -62,16 +62,21 @@ async def on_message(message):
             "ticker": tkr,
             'orig_price' : price, 
             }, index = [0])
+
+        dup_tkr_check = list(portfolio[portfolio['name'] == name]['ticker'])
+        if tkr in dup_tkr_check:
+            await message.channel.send("You already have this ticker within your portfolio.")
+        else: 
         #
-        connection = psycopg2.connect(os.getenv("DATABASE_URL"))
-        cursor = connection.cursor()
-        cursor.execute("INSERT INTO PORTFOLIO (name, ticker, price) VALUES ('{0}', '{1}', '{2}')".format(name, tkr, price));
-        connection.commit()
-        
-        print("Record inserted successfully")
-        connection.close()
-        del(local_df)
-        await message.channel.send('Ticker has been added to the portfolio:')
+            connection = psycopg2.connect(os.getenv("DATABASE_URL"))
+            cursor = connection.cursor()
+            cursor.execute("INSERT INTO PORTFOLIO (name, ticker, price) VALUES ('{0}', '{1}', '{2}')".format(name, tkr, price));
+            connection.commit()
+            
+            print("Record inserted successfully")
+            connection.close()
+            del(local_df)
+            await message.channel.send('Ticker has been added to the portfolio:')
 
 
 # if message.content.startswith('$Portfolio remove'): # Portfolio -name -add/remove tkr
