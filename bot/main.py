@@ -65,6 +65,7 @@ async def on_message(message):
 
         dup_tkr_check = list(portfolio[portfolio['name'] == name]['ticker'])
         if tkr in dup_tkr_check:
+            print("TRUE")
             await message.channel.send("You already have this ticker within your portfolio.")
         else: 
         #
