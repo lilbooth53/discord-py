@@ -67,7 +67,7 @@ async def on_message(message):
         #
         connection = psycopg2.connect(os.getenv("DATABASE_URL"))
         cursor = connection.cursor()
-        cursor.execute("INSERT INTO PORTFOLIO (name, ticker, price) VALUES ('{0}', '{1}', '{2}', '{3}')".format(name, tkr, price));
+        cursor.execute("INSERT INTO PORTFOLIO (name, ticker, price) VALUES ('{0}', '{1}', '{2}')".format(name, tkr, price));
         connection.commit()
         
         print("Record inserted successfully")
