@@ -55,10 +55,8 @@ async def on_message(message):
         name = mes[1]
         tkr = mes[3].upper()
 
- 
-        
         quote = iex.quote(symbol=tkr)
-        price = quote['latestPrice']
+        price = int(quote['latestPrice'])
         
         local_df = pd.DataFrame({"name" : name,
             "ticker": tkr,
