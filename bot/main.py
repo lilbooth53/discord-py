@@ -49,7 +49,7 @@ async def on_message(message):
         await message.channel.send(msg)
         await message.channel.send('Hello!')
     
-    ### Portfolio 
+    ### Portfolio ##
     if message.content.startswith('$Portfolio add'): # Portfolio -name -add/remove tkr
         mes = msg.split()
         name = mes[1]
