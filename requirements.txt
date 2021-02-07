@@ -3,3 +3,4 @@ pandas
 pyEX
 psycopg2
 sqlalchemy
+gunicorn
