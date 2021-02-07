@@ -63,11 +63,11 @@ async def on_message(message):
         local_df = pd.DataFrame({"name" : name,
             "ticker": tkr,
             'orig_price' : price, 
-            'new_price': 0}, index = [0])
+            }, index = [0])
         #
         connection = psycopg2.connect(os.getenv("DATABASE_URL"))
         cursor = connection.cursor()
-        cursor.execute("INSERT INTO PORTFOLIO (name, ticker, orig_price, new_price) VALUES ('{0}', '{1}', '{2}', '{3}')".format(name, tkr, price, 0));
+        cursor.execute("INSERT INTO PORTFOLIO (name, ticker, price) VALUES ('{0}', '{1}', '{2}', '{3}')".format(name, tkr, price));
         connection.commit()
         
         print("Record inserted successfully")
